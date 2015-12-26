@@ -6,11 +6,7 @@ Docker image for the official Backblaze B2 command line tool ([Backblaze/B2_Comm
 
 -	[`0.3.9`, `0.3`, `0`, `latest` (*Dockerfile*)](https://github.com/primait/docker-filebeat/blob/master/Dockerfile)
 
-## Build and update process
-
-This image is automatically built at every push of this repository and every time that the `python:2.7-slim` base image gets updated in order to ensure that bugfixes and security updates are immediately applied.
-
-## Run
+## How to use it
 
 First, you need to authorize your account.
 This will create the `.b2_account_info` file that will be needed every time you perform actions on B2.
@@ -45,3 +41,7 @@ $ crypt get -secret-keyring secring.gpg /secrets/backblaze-b2 > $PWD/.b2_account
 $ docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets
 $ rm $PWD/.b2_account_info
 ```
+
+## Build and update process
+
+This image is automatically built at every push of this repository and every time that the `python:2.7-slim` base image gets updated in order to ensure that bugfixes and security updates are immediately applied.

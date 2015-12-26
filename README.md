@@ -41,7 +41,7 @@ Now encrypt and store the config in the K/V store, using for example [crypt](htt
 Every time that you need to use B2 just get the config and temporarily store it in a file, eg:
 
 ```
-crypt get -secret-keyring secring.gpg /secrets/backblaze-b2 > $PWD/.b2_account_info
-docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets
-rm $PWD/.b2_account_info
+$ crypt get -secret-keyring secring.gpg /secrets/backblaze-b2 > $PWD/.b2_account_info
+$ docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets
+$ rm $PWD/.b2_account_info
 ```

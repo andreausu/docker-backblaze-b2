@@ -19,7 +19,7 @@ This will create the `.b2_account_info` file that will be needed every time you 
 
 Then you can perform all the other operations, eg:
 
-`docker run --rm andreausu/backblaze-b2 list_buckets`
+`docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets`
 
 You can see all the available commands by running:
 

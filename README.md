@@ -1,6 +1,6 @@
 # Docker Backblaze B2 command line tool image
 
-Docker image for the official Backblaze B2 command line tool
+Docker image for the official Backblaze B2 command line tool (https://github.com/Backblaze/B2_Command_Line_Tool)
 
 ## Supported tags and respective `Dockerfile` links
 

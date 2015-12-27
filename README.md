@@ -11,7 +11,7 @@ Docker image for the official Backblaze B2 command line tool ([Backblaze/B2_Comm
 First, you need to authorize your account.
 This will create the `.b2_account_info` file that will be needed every time you perform actions on B2.
 
-`docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 authorize_account accountId applicationKey`
+`docker run --rm -v $PWD:/root andreausu/backblaze-b2 authorize_account accountId applicationKey`
 
 Then you can perform all the other operations, eg:
 

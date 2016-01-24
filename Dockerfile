@@ -3,7 +3,10 @@ FROM python:2.7-slim
 MAINTAINER Andrea Usuelli <andreausu@gmail.com>
 
 # 0.3.9 Unfortunately releases are not yet tagged on GitHub
-ENV VERSION=0a0c5d0a4fb2e7f005f4dc4341d6d0512489e227
+ENV VERSION=24408e85e99d6d57e7c47623c3f286e4f50deaa6 \
+    AUTHORIZATION_FAIL_MAX_RETRIES=3
+    #B2_ACCOUNT_ID        if set at runtime, (re)authorization is performed automatically by this docker image
+    #B2_APPLICATION_KEY   if set at runtime, (re)authorization is performed automatically by this docker image
 
 RUN cd /opt && \
     apt-get update && \
@@ -18,4 +21,6 @@ RUN cd /opt && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /opt/B2_Command_Line_Tool
 
-ENTRYPOINT [ "/usr/bin/b2" ]
+COPY files/entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]

@@ -8,39 +8,16 @@ Docker image for the official Backblaze B2 command line tool ([Backblaze/B2_Comm
 
 ## How to use it
 
-First, you need to authorize your account.
-This will create the `.b2_account_info` file that will be needed every time you perform actions on B2.
+Before you can use any endpoint you have to perform the authorization by using the `authorize_account` command that will create the `/root/.b2_account_info` file that will be needed every time you perform actions on B2.
+This docker image can do that for you, plus refresh the authorization token every time that the authorization fails if you just define the `B2_ACCOUNT_ID` and `B2_APPLICATION_KEY` environment variables.
 
-`docker run --rm -v $PWD:/root andreausu/backblaze-b2 authorize_account accountId applicationKey`
+So you can use B2 just by passing the `B2_ACCOUNT_ID` and `B2_APPLICATION_KEY` environment variables to the `docker run` command, eg:
 
-Then you can perform all the other operations, eg:
-
-`docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets`
+`docker run --rm -v $PWD:/root -e B2_ACCOUNT_ID=your-account-id -e B2_APPLICATION_KEY=your-application-key andreausu/backblaze-b2 list_buckets`
 
 You can see all the available commands by running:
 
 `docker run --rm andreausu/backblaze-b2`
-
-## Working with an etcd or consul cluster (CoreOS, Kubernetes, Docker Swarm)
-
-If you need to use the B2 command line tool from a cluster, chances are that you can't easily use the default file based auth method, but you instead would like to have those info encrypted and stored into your distributed K/V store of choice.
-In order to do that you could do something like this:
-
-The first command is a one-off, so you could run it from your laptop:
-
-`docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 authorize_account accountId applicationKey`
-
-Now encrypt and store the config in the K/V store, using for example [crypt](https://xordataexchange.github.io/crypt/):
-
-`crypt set -keyring pubring.gpg /secrets/backblaze-b2 $PWD/.b2_account_info`
-
-Every time that you need to use B2 just get the config and temporarily store it in a file, eg:
-
-```
-$ crypt get -secret-keyring secring.gpg /secrets/backblaze-b2 > $PWD/.b2_account_info
-$ docker run --rm -v $PWD/.b2_account_info:/root/.b2_account_info andreausu/backblaze-b2 list_buckets
-$ rm $PWD/.b2_account_info
-```
 
 ## Build and update process
 

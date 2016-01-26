@@ -16,7 +16,7 @@ if [ -n "$B2_ACCOUNT_ID" ] && [ -n "$B2_APPLICATION_KEY" ]; then
       /usr/bin/b2 authorize_account "$B2_ACCOUNT_ID" "$B2_APPLICATION_KEY"
     fi
     OUTPUT=`$@`
-    if [[ $OUTPUT != *"bad_auth_token"* ]]; then
+    if [[ $OUTPUT != *"bad_auth_token"* ]] && [[ $OUTPUT != *"expired_auth_token"* ]]; then
       AUTH_FAILED=0
     fi
     EXIT_CODE=$?

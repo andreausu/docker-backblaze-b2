@@ -1,5 +1,7 @@
 # Docker Backblaze B2 command line tool image
 
+[![andreausu/backblaze-b2](http://dockeri.co/image/andreausu/backblaze-b2)](https://registry.hub.docker.com/u/andreausu/backblaze-b2/)
+
 Docker image for the official Backblaze B2 command line tool ([Backblaze/B2_Command_Line_Tool](https://github.com/Backblaze/B2_Command_Line_Tool))
 
 ## Supported tags and respective `Dockerfile` links

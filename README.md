@@ -6,7 +6,7 @@ Docker image for the official Backblaze B2 command line tool ([Backblaze/B2_Comm
 
 ## Supported tags and respective `Dockerfile` links
 
--	[`0.3.10`, `0.3`, `0`, `latest` (*Dockerfile*)](https://github.com/andreausu/docker-backblaze-b2/blob/master/Dockerfile)
+-	[`0.3.12`, `0.3`, `0`, `latest` (*Dockerfile*)](https://github.com/andreausu/docker-backblaze-b2/blob/master/Dockerfile)
 
 ## How to use it
 
@@ -15,11 +15,27 @@ This docker image can do that for you, plus refresh the authorization token ever
 
 So you can use B2 just by passing the `B2_ACCOUNT_ID` and `B2_APPLICATION_KEY` environment variables to the `docker run` command, eg:
 
-`docker run --rm -v $PWD:/root -e B2_ACCOUNT_ID=your-account-id -e B2_APPLICATION_KEY=your-application-key andreausu/backblaze-b2 list_buckets`
+```
+docker run --rm -v $PWD:/root -e B2_ACCOUNT_ID=your-account-id -e B2_APPLICATION_KEY=your-application-key andreausu/backblaze-b2 list_buckets
+```
 
 You can see all the available commands by running:
 
-`docker run --rm andreausu/backblaze-b2`
+```
+docker run --rm andreausu/backblaze-b2
+```
+
+## Additional commands
+
+This docker image provides some useful additional commands you can use:
+
+- `upload_file_replace` this will upload a file and then immediately delete all previous versions of that file
+
+Usage:
+
+```
+docker run --rm -v $PWD:/root -e B2_ACCOUNT_ID=your-account-id -e B2_APPLICATION_KEY=your-application-key andreausu/backblaze-b2 upload_file_replace bucketName localFilePath remoteFilePath
+```
 
 ## Build and update process
 

@@ -21,5 +21,6 @@ RUN cd /opt && \
     rm -rf /var/lib/apt/lists/* /opt/B2_Command_Line_Tool
 
 COPY files/entrypoint.sh /entrypoint.sh
+COPY files/upload_file_replace.py /usr/bin/b2_upload_file_replace
 
 ENTRYPOINT [ "/entrypoint.sh" ]

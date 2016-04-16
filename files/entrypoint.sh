@@ -2,7 +2,7 @@
 
 # Add b2 as base command if needed
 if [ "${1:0:2}" != 'b2' ]; then
-	if [ ${1} = "upload_file_replace" ]; then
+	if [ "${1}" = "upload_file_replace" ]; then
 		set -- python /usr/bin/b2_upload_file_replace "$@"
 	else
 		set -- b2 "$@"
